@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "clean": "rm -rf node_modules && rm -rf bower_components",
+    "build": "npm install && bower install"
   },
   "author": "",
   "license": "ISC",
