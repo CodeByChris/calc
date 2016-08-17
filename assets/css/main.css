@@ -1,0 +1,23 @@
+body {
+  background: #333; }
+
+.c-calc {
+  margin: 50px auto;
+  max-width: 400px; }
+  .c-calc__results {
+    display: block;
+    background: rgba(245, 245, 240, 0.5);
+    height: 50px;
+    text-align: center;
+    font-size: 3rem;
+    line-height: 2; }
+    .c-calc__results span {
+      color: #222; }
+  .c-calc__input {
+    background: rgba(245, 245, 240, 0.5);
+    border: 1px solid #333;
+    height: 75px;
+    color: #222;
+    font-weight: bold; }
+    .c-calc__input:focus {
+      outline: none; }

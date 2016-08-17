@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Flat calculator</title>
+    <link rel="stylesheet" type="text/css" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/main.css">
+</head>
+<body>
+    <div class="c-calc">
+        <div class="c-calc__results col-xs-12">
+            <span></span>
+        </div>
+        <div class="col-xs-9">
+            <div class="row">
+                <button class="c-calc__input col-xs-4" data-input="7">7</button>
+                <button class="c-calc__input col-xs-4" data-input="8">8</button>
+                <button class="c-calc__input col-xs-4" data-input="9">9</button>
+            </div>
+            <div class="row">
+                <button class="c-calc__input col-xs-4" data-input="4">4</button>
+                <button class="c-calc__input col-xs-4" data-input="5">5</button>
+                <button class="c-calc__input col-xs-4" data-input="6">6</button>
+            </div>
+            <div class="row">
+                <button class="c-calc__input col-xs-4" data-input="1">1</button>
+                <button class="c-calc__input col-xs-4" data-input="2">2</button>
+                <button class="c-calc__input col-xs-4" data-input="3">3</button>
+            </div>
+            <div class="row">
+                <button class="c-calc__input col-xs-4" data-input="0">0</button>
+                <button class="c-calc__input col-xs-4" data-input=".">.</button>
+                <button class="c-calc__input col-xs-4" data-input="C">C</button>
+            </div>
+        </div>
+        <div class="col-xs-3">
+            <div class="row">
+                <button class="c-calc__input col-xs-12" data-input="/">/</button>
+            </div>
+            <div class="row">
+                <button class="c-calc__input col-xs-12" data-input="*">X</button>
+            </div>
+            <div class="row">
+                <button class="c-calc__input col-xs-12" data-input="-">-</button>
+            </div>
+            <div class="row">
+                <button class="c-calc__input col-xs-12" data-input="+">+</button>
+            </div>
+        </div>
+        <button class="c-calc__input col-xs-12" data-input="=">=</button>
+    </div>
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.min.js"></script>
+<script type="text/javascript" src="assets/js/app.js"></script>
+</body>
+</html>
