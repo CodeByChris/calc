@@ -1,58 +1,53 @@
 'use strict';
 
-var inputContainer = $('.c-calc__inputs');
-var buffer = '';
-
-var addToBuffer = function addToBuffer(input) {
-    buffer = '' + buffer + input;
-    updateBuffer();
+var app = {
+	name: 'Calculator',
+	buffer: '',
+	input: $('.c-calc__input'),
+	inputContainer: $('.c-calc__inputs'),
+	resultsPanel: $('.c-calc__results'),
+	init: function init() {
+		this.updateBuffer();
+	},
+	addToBuffer: function addToBuffer(input) {
+		this.buffer = '' + this.buffer + input;
+		this.updateBuffer();
+	},
+	updateBuffer: function updateBuffer() {
+		this.resultsPanel.children('span').html(this.buffer);
+	},
+	doBufferMath: function doBufferMath() {
+		this.buffer = eval(this.buffer);
+		this.updateBuffer();
+	},
+	clearBuffer: function clearBuffer() {
+		this.buffer = '';
+		this.updateBuffer();
+	},
+	clickHandler: function clickHandler(input) {
+		switch (input) {
+			case 'C':
+				this.clearBuffer();
+				break;
+			case '=':
+				this.doBufferMath();
+				break;
+			default:
+				this.addToBuffer(input);
+		}
+	}
 };
 
-var updateBuffer = function updateBuffer() {
-    $('.c-calc__results').children('span').html(buffer);
-};
+app.init();
 
-var doBufferMath = function doBufferMath() {
-    buffer = eval(buffer);
-    updateBuffer();
-};
+// add listener to inputs should add this to the app object...
+app.input.each(function () {
+	var _this = this;
 
-var clearBuffer = function clearBuffer() {
+	var $this = $(this);
 
-    buffer = '';
-    updateBuffer();
-};
-
-var init = function init() {
-    updateBuffer();
-};
-
-init();
-
-var clickHandler = function clickHandler(input) {
-
-    switch (input) {
-        case 'C':
-            clearBuffer();
-            break;
-
-        case '=':
-            doBufferMath();
-            break;
-
-        default:
-            addToBuffer(input);
-    }
-};
-
-// Listen for input click
-$('.c-calc__input').each(function () {
-    var _this = this;
-
-    var $this = $(this);
-
-    $this.click(function () {
-        // Handle the click
-        clickHandler($(_this).data('input'));
-    });
+	$this.click(function () {
+		// Handle the click
+		app.clickHandler($(_this).data('input'));
+	});
 });

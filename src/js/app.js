@@ -1,55 +1,49 @@
-const inputContainer = $('.c-calc__inputs');
-let buffer = '';
-
-let addToBuffer = input =>{
-    buffer = `${ buffer }${ input }`;
-    updateBuffer();
-}
-
-let updateBuffer = () => {
-    $('.c-calc__results').children('span').html(buffer);
+let app = {
+	name: 'Calculator',
+	buffer: '',
+	input: $('.c-calc__input'),
+	inputContainer: $('.c-calc__inputs'),
+	resultsPanel: $('.c-calc__results'),
+	init() {
+		this.updateBuffer();
+	},
+	addToBuffer(input) {
+		this.buffer = `${ this.buffer }${ input }`;
+		this.updateBuffer();
+	},
+	updateBuffer() {
+		this.resultsPanel.children('span').html(this.buffer);
+	},
+	doBufferMath() {
+		this.buffer = eval(this.buffer);
+		this.updateBuffer();
+	},
+	clearBuffer() {
+		this.buffer = '';
+		this.updateBuffer();
+	},
+	clickHandler(input) {
+		switch(input) {
+			case 'C':
+				this.clearBuffer();
+				break;
+			case '=':
+				this.doBufferMath();
+				break;
+			default: 
+				this.addToBuffer(input);
+		}
+	}
 };
 
-let doBufferMath = () => {
-    buffer = eval(buffer);
-    updateBuffer();
-}
+app.init();
 
-let clearBuffer = () => {
+// add listener to inputs should add this to the app object...
+app.input.each(function() {
+	let $this = $(this);
 
-    buffer = '';
-    updateBuffer();
-};
-
-let init = () => {
-    updateBuffer();
-}
-
-init();
-
-let clickHandler = input => {
-
-    switch(input) {
-        case 'C': 
-            clearBuffer();
-            break;
-
-        case '=': 
-            doBufferMath();
-            break;
-
-        default:
-            addToBuffer(input);
-    }
-}
-
-// Listen for input click
-$('.c-calc__input').each(function() {
-    let $this = $(this);
-
-    $this.click(() => {
-        // Handle the click
-        clickHandler($(this).data('input'));
-    });
+	$this.click(() => {
+		// Handle the click
+		app.clickHandler($(this).data('input'));
+	});
 });
-
